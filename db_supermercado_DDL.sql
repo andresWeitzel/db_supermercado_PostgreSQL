@@ -17,6 +17,7 @@ drop table if exists proveedores cascade;
 drop table if exists empleados cascade;
 drop table if exists ventas cascade;
 drop table if exists clientes cascade;
+drop table if exists ventas_clientes cascade;
 drop table if exists facturas cascade;
 drop table if exists facturas_detalles cascade;
 
@@ -43,13 +44,13 @@ drop sequence if exists id_secuencia cascade;
 create table productos(
 	
 id int primary key,
-codigo varchar(60) not null,
-nombre varchar(60) not null,
+codigo varchar(40) not null,
+nombre varchar(100) not null,
 marca varchar(60) not null,
 tipo varchar(60) not null,-- bebidas, almacen, carnes y pescados, frutas y verduras, etc 
 grupo varchar(60) not null, -- Vinos, Gaseosas, etc
-peso decimal(8,2) not null,
-precio_unidad decimal(8,2) not null,
+peso decimal(8,3) not null,
+precio_unidad decimal(8,3) not null,
 stock smallint not null
 
 );
@@ -421,6 +422,7 @@ alter table proveedores alter id set default nextval('id_secuencia');
 alter table empleados alter id set default nextval('id_secuencia');
 alter table ventas alter id set default nextval('id_secuencia');
 alter table clientes alter id set default nextval('id_secuencia');
+alter table ventas_clientes alter id set default nextval('id_secuencia');
 alter table facturas alter id set default nextval('id_secuencia');
 alter table facturas_detalles alter id set default nextval('id_secuencia');
 
