@@ -45,6 +45,7 @@ create table productos(
 	
 id int primary key,
 codigo varchar(40) not null,
+imagen varchar(600) not null,
 nombre varchar(100) not null,
 marca varchar(60) not null,
 tipo varchar(60) not null,-- bebidas, almacen, carnes y pescados, frutas y verduras, etc 
@@ -63,6 +64,11 @@ stock smallint not null
 alter table productos 
 add constraint UNIQUE_productos_id
 unique(id);
+
+-- UNIQUE IMAGEN 
+alter table productos
+add constraint UNIQUE_productos_imagen
+unique(imagen); 
 
 -- UNIQUE CÓDIGO_NOMBRE
 alter table productos 
