@@ -355,7 +355,7 @@ check(importe_total > 0);
 -- Los enumerados deben estar declarados fuera de la creacion de tabla 
 
 create type tipo_factura_enum as enum('A','B','C','D');
-create type tipo_pago_enum as enum('EFECTIVO','CHEQUE','TARJETA');
+create type tipo_pago_enum as enum('EFECTIVO','CHEQUE','TARJETA CREDITO', 'TARJETA DEBITO');
 
 
 
@@ -364,11 +364,11 @@ create table facturas_detalles(
 id int primary key,
 id_factura int not null,
 tipo tipo_factura_enum not null, -- A,C ETC
-descripcion_factura varchar(100) not null,-- 
-costo_asociado decimal(8,2) not null, -- servicios, comisiones, etc
+descr_factura varchar(100) not null,-- 
+costo_asoc decimal(8,2) not null, -- servicios, comisiones, etc
 iva decimal(10,2) not null,
 medio_de_pago tipo_pago_enum not null,
-descripcion_pago varchar(100) not null
+descr_pago varchar(100) not null
 
 );
 
@@ -393,8 +393,8 @@ references facturas(id);
 
 -- CHECK COSTO_ASOCIADO
 alter table facturas_detalles
-add constraint CHECK_facturas_detalles_costo_asociado
-check( costo_asociado > 0);
+add constraint CHECK_facturas_detalles_costo_asoc
+check( costo_asoc > 0);
 
 
 
@@ -440,7 +440,7 @@ references facturas(id);
 
 
 
--- ======= TABLA VENTAS_CLIENTES ===========
+-- ======= TABLA COMPRAS_CLIENTES ===========
 
 create table compras_clientes(
 	

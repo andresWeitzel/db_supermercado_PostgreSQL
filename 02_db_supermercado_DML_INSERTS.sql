@@ -4,21 +4,18 @@
  * ----------------------------
  * 
  * 
- * ========= DML =============
+ * ========= DML INSERTS =============
  */
 
 -- TABLAS
-
-
-
+delete  from compras_clientes cascade;
+delete  from ventas cascade;
 delete  from productos cascade;
 delete  from proveedores cascade;
-delete  from empleados cascade;
-delete  from ventas cascade;
-delete  from clientes cascade;
-delete  from compras_clientes cascade;
-delete  from facturas cascade;
 delete  from facturas_detalles cascade;
+delete  from facturas cascade;
+delete  from empleados cascade;
+delete  from clientes cascade;
 
 
 -- Alteramos la secuencia auto incrementable id 
@@ -194,7 +191,6 @@ insert into clientes (nombre, apellido, tipo_doc, nro_doc, nro_tel_princ
 ('Ramiro','Martinez','DNI','37849567333','-','-','ramiroMartinez3564@gmail.com');
 
 
-/*
 
 -- ---------------------------------------------------------------------------
 
@@ -210,11 +206,33 @@ information_schema.columns where table_name = 'facturas';
 
 select * from facturas;
 
-insert into facturas(numero, codigo, fecha_emision, hora_emision , importe_total)
+insert into facturas(id_empleado ,numero, codigo, fecha, hora, importe_total) values
+(1, '000056','000067352',current_date,current_time, 3000),
+(2, '000057','000067673',current_date,current_time, 1200);
 
-*/
 
-/*
+-- ---------------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------------
+
+-- ===========================================
+-- ======= TABLA FACTURAS_DETALLES ===========
+-- ===========================================
+
+
+select column_name, data_type, is_nullable from 
+information_schema.columns where table_name = 'facturas_detalles';
+
+select * from facturas_detalles;
+
+insert into facturas_detalles(id_factura , tipo , descr_factura , costo_asoc , iva , medio_de_pago ,descr_pago) values
+(1, 'B' , 'Consumidor Final' , 86 , 8, 'EFECTIVO', 'Un Solo Pago'),
+(2, 'B' , 'Consumidor Final' , 86 , 8 , 'TARJETA CREDITO','Un solo Pago');
+
+
+
+
+
 -- ---------------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------------
@@ -229,9 +247,27 @@ information_schema.columns where table_name = 'ventas';
 
 select * from ventas;
 
-insert into ventas(id_empleado, fecha_venta , hora_venta ) values 
-(1,current_date, current_time),
-();
+insert into ventas(id_empleado, id_factura ) values 
+(1,1),
+(2,2);
 
 
-*/
+-- ---------------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------------
+
+-- ==========================================
+-- ======= TABLA COMPRAS_CLIENTES ===========
+-- ==========================================
+
+
+select column_name, data_type, is_nullable from 
+information_schema.columns where table_name = 'compras_clientes';
+
+select * from compras_clientes;
+
+insert into compras_clientes(id_venta, id_cliente) values 
+(1,1),
+(2,2);
+
+
