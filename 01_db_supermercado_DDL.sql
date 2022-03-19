@@ -124,7 +124,7 @@ unique(codigo, nombre);
 alter table productos  
 add constraint FK_productos_id_proveedor
 foreign key(id_proveedor)
-references proveedores(id);
+references proveedores(id) on delete cascade;
 
 -- UNIQUE CÓDIGO
 alter table productos 
@@ -319,7 +319,7 @@ unique(id);
 alter table facturas 
 add constraint FK_facturas_id_empleado
 foreign key(id_empleado)
-references empleados(id);
+references empleados(id) on delete cascade;
 
 -- CHECK NUMERO Y CODIGO
 alter table facturas 
@@ -388,7 +388,7 @@ unique(id_factura);
 alter table facturas_detalles 
 add constraint FK_facturas_detalles_id_factura
 foreign key(id_factura)
-references facturas(id);
+references facturas(id) on delete cascade;
 
 
 -- CHECK COSTO_ASOCIADO
@@ -425,13 +425,13 @@ unique(id);
 alter table ventas 
 add constraint FK_ventas_id_empleado
 foreign key(id_empleado)
-references empleados(id);
+references empleados(id) on delete cascade;
 
 -- FK ID_EMPLEADO
 alter table ventas 
 add constraint FK_ventas_id_factura
 foreign key(id_factura)
-references facturas(id);
+references facturas(id) on delete cascade;
 
 
 -- ---------------------------------------------------------------------------
@@ -460,14 +460,14 @@ unique(id);
 alter table compras_clientes
 add constraint FK_compras_clientes_id_venta
 foreign key(id_venta)
-references ventas(id);
+references ventas(id) on delete cascade;
 
 
 -- FK ID_CLIENTE
 alter table compras_clientes
 add constraint FK_compras_clientes_id_cliente
 foreign key(id_cliente)
-references clientes(id);
+references clientes(id) on delete cascade;
 
 
 
