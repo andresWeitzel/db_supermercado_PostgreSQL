@@ -411,7 +411,10 @@ create table ventas(
 	
 id int primary key,
 id_empleado int not null,
+id_producto int not null,
+cantidad int not null,
 id_factura int not null
+
 );
 
 -- ======= Restricciones Tabla ventas ===========
@@ -427,7 +430,19 @@ add constraint FK_ventas_id_empleado
 foreign key(id_empleado)
 references empleados(id) on delete cascade;
 
--- FK ID_EMPLEADO
+
+-- FK ID_PRODUCTO
+alter table ventas 
+add constraint FK_ventas_id_producto
+foreign key(id_producto)
+references productos(id) on delete cascade;
+
+--CHECK CANTIDAD	
+alter table ventas 
+add constraint CHECK_ventas_cantidad
+check(cantidad > 0); 
+
+-- FK ID_FACTURA
 alter table ventas 
 add constraint FK_ventas_id_factura
 foreign key(id_factura)

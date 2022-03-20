@@ -50,6 +50,15 @@ select * from productos;
 select * from proveedores;
 
 
+
+--Todos los Productos cuyo peso sea 1 kilo o menos
+select * from productos where peso <= 1;
+
+--Todos los Productos cuyo peso sea mayor a 1 kilo
+select * from productos where peso > 1;
+
+
+
 --Productos Ordenados por Id del Proveedor
 select * from productos order by id_proveedor;
 
@@ -87,4 +96,133 @@ where ((proveedores.empresa = 'Sin Especificar') and
 (productos.stock >= 200));
 
 
+
+
+
+-- ---------------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------------
+
+-- ================================
+-- ======= TABLA EMPLEADOS ========
+-- ================================
+
+select * from empleados;
+
+
+--Empleados ordenados de forma creciente segun su Antiguedad, solo nombre,
+-- apellido y antiguedad
+select nombre, apellido, antiguedad from empleados 
+order by antiguedad like '%años%';
+
+
+
+--Empleados ordenados de forma decreciente segun su Antiguedad , solo nombre,
+-- apellido y antiguedad
+select nombre, apellido, antiguedad from empleados 
+order by antiguedad like '%años y %' desc ;
+
+--Empleados ordenados de forma decreciente segun su Antiguedad , solo nombre,
+-- apellido y antiguedad
+select nombre, apellido, cargo, antiguedad, salario_anual  from empleados 
+order by antiguedad like '%años y %' desc ;
+
+
+--Empleados Ordenados segun el salario, solo manejo de campos necesarios
+select nombre, apellido, cargo, antiguedad, salario_anual
+from empleados order by salario_anual;
+
+
+-- Empleados ordenados por fecha de nacimiento
+select nombre, apellido, edad, fecha_nac, cargo, antiguedad, salario_anual
+from empleados order by fecha_nac ;
+
+
+select * from empleados;
+
+
+
+
+-- ---------------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------------
+
+-- ================================
+-- ======= TABLA CLIENTES ========
+-- ================================
+
+select * from clientes;
+
+
+--Clientes ordenados por nro de doc
+select * from clientes order by nro_doc;
+
+
+--Clientes que manejen hotmail
+select * from clientes  where email like '%hotmail%' order by nombre;
+
+
+
+
+
+
+-- ---------------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------------
+
+-- ================================
+-- ======= TABLA FACTURAS ========
+-- ================================
+
+select * from facturas;
+
+
+--Facturas ordenadas segun numero
+select * from facturas order by numero;
+
+--Facturas ordenadas segun numero donde el importe sea menor a $2000
+select * from facturas where importe_total <= 2000 order by numero;
+
+
+--Facturas ordenadas segun numero donde el importe sea mayor a $1000
+select * from facturas where importe_total > 1000 order by numero;
+
+
+
+--Facturas Ordenadas por fecha y hora
+select * from facturas order by fecha, hora;
+
+
+
+--Facturas Ordenadas por fecha y hora ultimas
+select * from facturas order by fecha, hora desc;
+
+
+
+select * from empleados;
+select * from facturas;
+
+--Facturas Ordenadas por fecha y hora con datos del empleado
+select facturas.* , empleados.nombre, empleados.apellido, empleados.cargo 
+from facturas join empleados 
+on facturas.id_empleado = empleados.id 
+order by fecha, hora;
+
+
+
+
+
+-- ---------------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------------
+
+-- ========================================
+-- ======= TABLA FACTURAS_DETALLES ========
+-- ========================================
+
+
+select * from facturas_detalles;
+
+
+-- Un solo dtaelle de factura ingresado
 

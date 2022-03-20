@@ -111,7 +111,7 @@ update empleados set apellido  = initcap(apellido);
 
 
 --Actualizamos antiguedad y sueldo de un empleado
-update empleados set antiguedad='4 años y 6 meses', salario_anual = 165000
+update empleados set antiguedad='4 años y 6 meses', salario_anual = 67000
 where ((nombre = 'Marcos') and (apellido='Castro') and (edad='45'));
 
 
