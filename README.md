@@ -95,7 +95,7 @@
 
 - [ Paso 4) Subir el proyecto al repositorio de github desde la consola de git](#paso-4-subir-el-proyecto-de-github-desde-la-consola-de-git)
  
-- [Paso 5) Actualización del repositorio del proyecto desde la consola de GIT](#paso-5-actualización-del-repositorio-del-proyecto-desde-la-consola-de-git)
+- [Paso 5) Actualización del repositorio del proyecto desde la consola de GIT](#paso-5-actualizacion-del-repositorio-del-proyecto-desde-la-consola-de-git)
   
 
 
