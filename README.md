@@ -83,9 +83,9 @@
 
   #### Sección 1) Configuración de la Base de Datos
 
-  - [ Paso 1) Configuración y Puesta en Marcha de la Base de Datos.](#paso-1-configuración-y-puesta-en-marcha-de-la-base-de-datos)
+  - [ Paso 1) Configuración y Puesta en Marcha de la Base de Datos.](#paso-1-configuración-y-puesta-en-marcha-de-la-base-de-datos-`db_supermercado`)
 
-  - [ Paso 2) Ejecución de los Archivos .SQL](#paso-2-ejecución-de-los-archivos-.sql)
+  - [ Paso 2) Ejecución de los Archivos .SQL](#paso-2-ejecución-de-los-archivos-`.sql`)
 
   
 
@@ -93,7 +93,7 @@
 
 - [ Paso 3) Descarga y Configuración de Git](#paso-3-descarga-y-configuración-de-git)
 
-- [ Paso 4) Subir el proyecto al repositorio de github desde la consola de git](#paso-4-subir-el-proyecto-de-github-desde-la-consola-de-git)
+- [ Paso 4) Subir el proyecto al repositorio de github desde la consola de git](#paso-4-subir-el-proyecto-al-repositorio-de-github-desde-la-consola-de-git)
  
 - [Paso 5) Actualización del repositorio del proyecto desde la consola de GIT](#paso-5-actualización-del-repositorio-del-proyecto-desde-la-consola-de-GIT)
   
