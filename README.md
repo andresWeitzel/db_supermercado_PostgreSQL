@@ -1,24 +1,39 @@
-# Base de Datos Supermercado
+# Base de Datos Supermercado Tienda Online 
 
 
 </br>
 
 ## Descripción 
-* Base de Datos para el Proyecto de Tienda Online de Ventas de Productos Alimenticios utilizando Servlets, JSP, Bootstrap y PostgreSQL
+* Base de Datos de un Supermercado para la administración de productos, proveedores, ventas, etc.
+* En primera instancia esta base de datos la diseñe y desarrolle para una aplicación web cuyo estado actual es stand by.
+* La db se implementa con el SGDB PostgreSQLa través de SG DBeaver y se modulariza a través del DDL, DML y QUERIES.
+* No se desarrolla la sección de administración ni gestión (Triggers, Procedimientos Almacenados, etc)
 
 
 </br>
 
 #### Diagrama Entidad Relación  `db_inmobiliaria`
 
-![Index app](https://github.com/andresWeitzel/Administracion_Gestion_BasesDeDatos_PostgreSQL/blob/master/documentacion/db_inmobiliaria_DER_01.png)
+![Index app](https://github.com/andresWeitzel/db_supermercado_tienda_online/blob/master/doc/db_supermercado_ER.png)
 
 
-* DBeaver implementa la Notación IDEF1X para el Diagrama Entidad Relación. En la documentación que anexa DBeaver(https://dbeaver.com/docs/wiki/ER-Diagrams/) no está del todo claro la relación que implementa. Investigando sobre las mismas, se puede concluir que la Relación Diamante y Círculo entre línea Punteada se declara como relaciónes Opcionales. Por ende debajo de la siguiente Imagen está detallado las Relaciones entre Entidades.
+* DBeaver implementa la Notación IDEF1X para el Diagrama Entidad Relación. En la documentación que anexa DBeaver(https://dbeaver.com/docs/wiki/ER-Diagrams/) no está del todo claro la relación que implementa. Investigando sobre las mismas, se puede concluir que la Relación Diamante y Círculo entre línea Punteada se declara como relaciónes Opcionales.
 
 ![Index app](https://github.com/andresWeitzel/Administracion_Gestion_BasesDeDatos_PostgreSQL/blob/master/documentacion/relacionDeTablas.png)
 
 </br>
+
+### Vista de Registros como ejemplificación
+#### Listado de productos de la Tabla  `productos`
+
+![Index app](https://github.com/andresWeitzel/db_supermercado_tienda_online/blob/master/doc/listado_productos.png)
+
+</br>
+
+#### Listado de empleados de la Tabla  `empleados`
+
+![Index app](https://github.com/andresWeitzel/db_supermercado_tienda_online/blob/master/doc/listado_empleados.png)
+
 
 <hr>
 
