@@ -4,7 +4,7 @@
 </br>
 
 ## Descripción 
-* Base de Datos de un Supermercado para la administración de productos, proveedores, ventas, etc.
+* Base de Datos de un Supermercado para la Administración de Productos, proveedores, ventas, etc.
 * En primera instancia esta base de datos la diseñe y desarrolle para una aplicación web cuyo estado actual es stand by.
 * La db se implementa con el SGDB PostgreSQLa través de GDB DBeaver y se modulariza a través del DDL, DML y QUERIES.
 * No se desarrolla la sección de administración ni gestión (Triggers, Procedimientos Almacenados, etc)
