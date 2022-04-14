@@ -1,18 +1,18 @@
-# Base de Datos Supermercado Tienda Online 
+# Base de Datos Supermercado  
 
 
 </br>
 
 ## Descripción 
-* Base de Datos de un Supermercado para la Administración de Productos, proveedores, ventas, etc.
-* En primera instancia esta base de datos la diseñe y desarrolle para una aplicación web cuyo estado actual es stand by.
-* La db se implementa con el SGDB PostgreSQLa través de GDB DBeaver y se modulariza a través del DDL, DML y QUERIES.
-* No se desarrolla la sección de administración ni gestión (Triggers, Procedimientos Almacenados, etc)
+* Base de Datos de un Supermercado para la Administración de Productos, Proveedores, Clientes, Ventas, etc.
+* Se implementa con el SGDB PostgreSQL a través del GDB DBeaver y se modulariza a través del DDL, DML y QUERIES.
+* Dentro del DML se modulariza la inserción, modificación y eliminación de Registros para la comprobación de funcionalidad de la db 
+* No se desarrolla la sección de Administración ni Gestión de la Base de Datos (Triggers, Procedimientos Almacenados, etc)
 
 
 </br>
 
-#### Diagrama Entidad Relación  `db_inmobiliaria`
+#### Diagrama Entidad Relación  `db_supermercado`
 
 ![Index app](https://github.com/andresWeitzel/db_supermercado_tienda_online/blob/master/doc/db_supermercado_ER.png)
 
@@ -23,7 +23,7 @@
 
 </br>
 
-### Vista de Registros como ejemplificación
+### Vista de Registros como Ejemplificación
 #### Listado de productos de la Tabla  `productos`
 
 ![Index app](https://github.com/andresWeitzel/db_supermercado_tienda_online/blob/master/doc/listado_productos.png)
