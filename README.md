@@ -240,10 +240,10 @@
 
 #### 5.4) Sincronizamos y traemos todos los cambios del repositorio remoto a la rama en la que estemos trabajando actualmente.
 ##### (SOLO SI SE REALIZARON CAMBIOS DESDE OTRA LADO, ej: en github u/o/y un equipo de trabajo)
-* git pull https://github.com/andresWeitzel/db_supermercado_tienda_online
+* git pull https://github.com/andresWeitzel/db_supermercado
 
 #### 5.5) Enviamos todos los cambios locales al repo en github
-* git push https://github.com/andresWeitzel/db_supermercado_tienda_online
+* git push https://github.com/andresWeitzel/db_supermercado
 
 #### 5.6) En casos extremos pisamos todo el repositorio
 * git push -f --set-upstream origin master
