@@ -19,6 +19,7 @@ drop table if exists empleados cascade;
 drop table if exists ventas cascade;
 drop table if exists clientes cascade;
 drop table if exists compras_clientes cascade;
+drop table if exists ventas_productos  cascade;
 drop table if exists facturas cascade;
 drop table if exists facturas_detalles cascade;
 
@@ -38,6 +39,7 @@ drop sequence if exists id_sec_empl cascade;
 drop sequence if exists id_sec_vent cascade;
 drop sequence if exists id_sec_cli cascade;
 drop sequence if exists id_sec_compr_cli cascade;
+drop sequence if exists id_sec_vent_prod cascade;
 drop sequence if exists id_sec_fact cascade;
 drop sequence if exists id_sec_fact_det cascade;
 
@@ -52,7 +54,10 @@ drop sequence if exists id_sec_fact_det cascade;
 
 -- ---------------------------------------------------------------------------
 
+
+-- =====================================
 -- ======= TABLA PROVEEDORES ===========
+-- =====================================
 
 create table proveedores(
 	
@@ -87,80 +92,10 @@ check((empresa <> '') and (tipo_producto <> '') and (direccion <> '') and
 
 -- ---------------------------------------------------------------------------
 
--- ======= TABLA PRODUCTOS ===========
 
-create table productos(
-	
-id int primary key,
-id_proveedor int not null, 
-codigo varchar(100) not null,
-imagen varchar(600) ,
-nombre varchar(100) not null,
-marca varchar(60) not null,
-tipo varchar(60) not null,-- bebidas, almacen, carnes y pescados, frutas y verduras, etc 
-grupo varchar(60) not null, -- Vinos, Gaseosas, etc
-peso decimal(8,3) not null,
-precio_unidad decimal(8,3) not null,
-stock smallint not null
-
-);
-
-
-
--- ======= Restricciones Tabla productos ===========
-
--- UNIQUE ID
-alter table productos 
-add constraint UNIQUE_productos_id
-unique(id);
-
---UNIQUE CODIGO_NOMBRE
-alter table productos
-add constraint UNIQUE_productos_codigo_nombre
-unique(codigo, nombre);
-
-
--- FK ID_PROVEEDOR
-alter table productos  
-add constraint FK_productos_id_proveedor
-foreign key(id_proveedor)
-references proveedores(id) on delete cascade;
-
--- UNIQUE CÓDIGO
-alter table productos 
-add constraint UNIQUE_productos_codigo
-unique(codigo);
-
--- CHECK PESO
-alter table productos 
-add constraint CHECK_productos_peso
-check(peso > 0);
-
--- CHECK PRECIO_UNIDAD
-alter table productos 
-add constraint CHECK_productos_precio_unidad
-check(precio_unidad > 0);
-
--- CHECK STOCK
-alter table productos 
-add constraint CHECK_productos_stock
-check(stock > 0);
-
-
--- CHECK NOMBRE | MARCA | TIPO | GRUPO 
-alter table productos 
-add constraint CHECK_nombre_marca_tipo_grupo
-check((nombre <> '') and (marca <> '') and (tipo <> '') and (grupo <> ''));
-
-
-
-
-
--- ---------------------------------------------------------------------------
-
--- ---------------------------------------------------------------------------
-
+-- ===================================
 -- ======= TABLA EMPLEADOS ===========
+-- ==================================
 
 create table empleados(
 	
@@ -242,7 +177,9 @@ check (salario_anual > 0);
 -- ---------------------------------------------------------------------------
 
 
+-- ===================================
 -- ======= TABLA CLIENTES ===========
+-- ===================================
 
 create table clientes(
 	
@@ -294,12 +231,13 @@ unique(nro_tel_princ);
 
 
 
+-- ===================================
 -- ======= TABLA FACTURAS ===========
+-- ===================================
 
 create table facturas(
 	
 id int primary key,
-id_empleado int not null,
 numero varchar(200) not null,-- 00008
 codigo varchar(200) not null, -- 00059374
 fecha date not null,-- ej '2001-10-07'
@@ -315,11 +253,6 @@ alter table facturas
 add constraint UNIQUE_facturas_id
 unique(id);
 
--- FK ID_EMPLEADO
-alter table facturas 
-add constraint FK_facturas_id_empleado
-foreign key(id_empleado)
-references empleados(id) on delete cascade;
 
 -- CHECK NUMERO Y CODIGO
 alter table facturas 
@@ -346,12 +279,11 @@ check(importe_total > 0);
 
 -- ---------------------------------------------------------------------------
 
-
-
 -- ---------------------------------------------------------------------------
 
--- ======= TABLA FACTURAS_DETALLES ===========
-
+-- ===================================
+-- == TABLA FACTURAS_DETALLES ========
+-- ===================================
 -- Los enumerados deben estar declarados fuera de la creacion de tabla 
 
 create type tipo_factura_enum as enum('A','B','C','D');
@@ -398,6 +330,79 @@ check( costo_asoc > 0);
 
 
 
+-- ---------------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------------
+-- ===================================
+-- ======= TABLA PRODUCTOS ===========
+-- ===================================
+
+create table productos(
+	
+id int primary key,
+id_proveedor int not null, 
+codigo varchar(100) not null,
+imagen varchar(600) ,
+nombre varchar(100) not null,
+marca varchar(60) not null,
+tipo varchar(60) not null,-- bebidas, almacen, carnes y pescados, frutas y verduras, etc 
+grupo varchar(60) not null, -- Vinos, Gaseosas, etc
+peso decimal(8,3) not null,
+precio_unidad decimal(8,3) not null,
+stock smallint not null
+
+);
+
+
+
+-- ======= Restricciones Tabla productos ===========
+
+-- UNIQUE ID
+alter table productos 
+add constraint UNIQUE_productos_id
+unique(id);
+
+--UNIQUE CODIGO_NOMBRE
+alter table productos
+add constraint UNIQUE_productos_codigo_nombre
+unique(codigo, nombre);
+
+
+-- FK ID_PROVEEDOR
+alter table productos  
+add constraint FK_productos_id_proveedor
+foreign key(id_proveedor)
+references proveedores(id) on delete cascade;
+
+-- UNIQUE CÓDIGO
+alter table productos 
+add constraint UNIQUE_productos_codigo
+unique(codigo);
+
+-- CHECK PESO
+alter table productos 
+add constraint CHECK_productos_peso
+check(peso > 0);
+
+-- CHECK PRECIO_UNIDAD
+alter table productos 
+add constraint CHECK_productos_precio_unidad
+check(precio_unidad > 0);
+
+-- CHECK STOCK
+alter table productos 
+add constraint CHECK_productos_stock
+check(stock > 0);
+
+
+-- CHECK NOMBRE | MARCA | TIPO | GRUPO 
+alter table productos 
+add constraint CHECK_nombre_marca_tipo_grupo
+check((nombre <> '') and (marca <> '') and (tipo <> '') and (grupo <> ''));
+
+
+
+
 
 -- ---------------------------------------------------------------------------
 
@@ -405,14 +410,14 @@ check( costo_asoc > 0);
 
 
 
+-- ================================
 -- ======= TABLA VENTAS ===========
+-- ================================
 
 create table ventas(
 	
 id int primary key,
 id_empleado int not null,
-id_producto int not null,
-cantidad int not null,
 id_factura int not null
 
 );
@@ -430,18 +435,6 @@ add constraint FK_ventas_id_empleado
 foreign key(id_empleado)
 references empleados(id) on delete cascade;
 
-
--- FK ID_PRODUCTO
-alter table ventas 
-add constraint FK_ventas_id_producto
-foreign key(id_producto)
-references productos(id) on delete cascade;
-
---CHECK CANTIDAD	
-alter table ventas 
-add constraint CHECK_ventas_cantidad
-check(cantidad > 0); 
-
 -- FK ID_FACTURA
 alter table ventas 
 add constraint FK_ventas_id_factura
@@ -449,13 +442,71 @@ foreign key(id_factura)
 references facturas(id) on delete cascade;
 
 
+-- UNIQUE ID_FACTURA
+alter table ventas 
+add constraint UNIQUE_ventas_id_factura
+unique(id_factura);
+
+
+
+
+
+
+-- ---------------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------------
+
+
+-- ===================================
+-- ======= TABLA VENTAS_PRODUCTOS ===========
+-- ===================================
+
+create table ventas_productos(
+	
+id int primary key,
+id_venta int not null,
+id_producto int not null,
+cantidad int not null
+
+
+);
+
+-- ======= Restricciones Tabla ventas_productos ===========
+
+-- UNIQUE ID
+alter table ventas_productos
+add constraint UNIQUE_ventas_productos_id
+unique(id);
+
+-- FK ID_VENTA
+alter table ventas_productos
+add constraint FK_ventas_productos_id_venta
+foreign key(id_venta)
+references ventas(id) on delete cascade;
+
+
+-- FK ID_PRODUCTO
+alter table ventas_productos 
+add constraint FK_ventas_productos_id_producto
+foreign key(id_producto)
+references productos(id) on delete cascade;
+
+
+
+--CHECK CANTIDAD	
+alter table ventas_productos 
+add constraint CHECK_ventas_productos_cantidad
+check(cantidad > 0); 
+
 -- ---------------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------------
 
 
 
+-- ===================================
 -- ======= TABLA COMPRAS_CLIENTES ===========
+-- ===================================
 
 create table compras_clientes(
 	
@@ -506,6 +557,7 @@ create sequence id_sec_empl;
 create sequence id_sec_vent ;
 create sequence id_sec_cli ;
 create sequence id_sec_compr_cli ;
+create sequence id_sec_vent_prod;
 create sequence id_sec_fact ;
 create sequence id_sec_fact_det ;
 
@@ -517,6 +569,7 @@ alter table empleados alter id set default nextval('id_sec_empl');
 alter table ventas alter id set default nextval('id_sec_vent');
 alter table clientes alter id set default nextval('id_sec_cli');
 alter table compras_clientes alter id set default nextval('id_sec_compr_cli');
+alter table ventas_productos alter id set default nextval('id_sec_vent_prod');
 alter table facturas alter id set default nextval('id_sec_fact');
 alter table facturas_detalles alter id set default nextval('id_sec_fact_det');
 

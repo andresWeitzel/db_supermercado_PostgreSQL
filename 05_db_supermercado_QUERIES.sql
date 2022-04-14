@@ -199,14 +199,6 @@ select * from facturas order by fecha, hora desc;
 
 
 
-select * from empleados;
-select * from facturas;
-
---Facturas Ordenadas por fecha y hora con datos del empleado
-select facturas.* , empleados.nombre, empleados.apellido, empleados.cargo 
-from facturas join empleados 
-on facturas.id_empleado = empleados.id 
-order by fecha, hora;
 
 
 
@@ -224,5 +216,12 @@ order by fecha, hora;
 select * from facturas_detalles;
 
 
--- Un solo dtaelle de factura ingresado
+--Facturas Detalles Ordenadas por tipo
+select * from facturas_detalles order by tipo;
+
+
+--Facturas Detalles Ordenadas por id de factura
+select * from facturas_detalles order by id_factura;
+
+
 

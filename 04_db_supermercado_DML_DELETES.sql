@@ -129,8 +129,8 @@ select * from facturas;
 delete from facturas where (numero='000056');
 
 
-insert into facturas(id_empleado ,numero, codigo, fecha, hora, importe_total) values
-(1, '000058','000068695',current_date,current_time, 8900);
+insert into facturas(numero, codigo, fecha, hora, importe_total) values
+('000058','000068695',current_date,current_time, 8900);
 
 
 

@@ -9,6 +9,7 @@
 
 -- TABLAS
 delete  from compras_clientes cascade;
+delete  from ventas_productos cascade;
 delete  from ventas cascade;
 delete  from productos cascade;
 delete  from proveedores cascade;
@@ -25,6 +26,7 @@ alter sequence id_sec_empl restart with 1;
 alter sequence id_sec_vent restart with 1;
 alter sequence id_sec_cli restart with 1;
 alter sequence id_sec_compr_cli restart with 1;
+alter sequence id_sec_vent_prod restart with 1;
 alter sequence id_sec_fact restart with 1;
 alter sequence id_sec_fact_det restart with 1;
 
@@ -206,9 +208,10 @@ information_schema.columns where table_name = 'facturas';
 
 select * from facturas;
 
-insert into facturas(id_empleado ,numero, codigo, fecha, hora, importe_total) values
-(1, '000056','000067352',current_date,current_time, 3000),
-(2, '000057','000067673',current_date,current_time, 1200);
+insert into facturas(numero, codigo, fecha, hora, importe_total) values
+( '000056','000067352',current_date,current_time, 3000),
+( '000057','000067673',current_date,current_time, 1200),
+( '000058','000067645',current_date,current_time, 3400);
 
 
 -- ---------------------------------------------------------------------------
@@ -227,7 +230,8 @@ select * from facturas_detalles;
 
 insert into facturas_detalles(id_factura , tipo , descr_factura , costo_asoc , iva , medio_de_pago ,descr_pago) values
 (1, 'B' , 'Consumidor Final' , 86 , 8, 'EFECTIVO', 'Un Solo Pago'),
-(2, 'B' , 'Consumidor Final' , 86 , 8 , 'TARJETA CREDITO','Un solo Pago');
+(2, 'B' , 'Consumidor Final' , 86 , 8 , 'TARJETA CREDITO','Un solo Pago'),
+(3, 'B' , 'Consumidor Final' , 86 , 8 , 'TARJETA DEBITO','Un solo Pago');
 
 
 
@@ -247,13 +251,34 @@ information_schema.columns where table_name = 'ventas';
 
 select * from ventas;
 
-insert into ventas(id_empleado, id_producto, cantidad ,  id_factura ) values 
-(1,1,2,1),
-(1,2,1,1),
-(1,4,3,1),
-(2,8,2,2),
-(2,1,2,2),
-(2,7,5,2);
+insert into ventas(id_empleado, id_factura ) values 
+(1,1),
+(1,2),
+(2,3);
+
+
+
+-- ---------------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------------
+
+-- ==========================================
+-- ======= TABLA VENTAS_PRODUCTOS ===========
+-- ==========================================
+
+
+select column_name, data_type, is_nullable from 
+information_schema.columns where table_name = 'ventas_productos';
+
+select * from ventas_productos;
+
+insert into ventas_productos(id_venta, id_producto, cantidad) values 
+(1,1,4),
+(1,2,5),
+(1,3,5),
+(2,2,2),
+(2,3,4),
+(2,5,5);
 
 
 -- ---------------------------------------------------------------------------
