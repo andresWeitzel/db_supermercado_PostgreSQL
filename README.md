@@ -218,7 +218,7 @@
 * git commit -m "agrega un comentario entre comillas"
 
 #### 4.5)  Le indicamos a git donde se va a almacenar nuestro proyecto(fijate en tu repositorio de github cual es el enlace de tu proyecto(esta en code)).
-* git remote add origin https://github.com/andresWeitzel/db_supermercado_tienda_online
+* git remote add origin https://github.com/andresWeitzel/db_supermercado
 
 #### 4.6) Subimos nuestro proyecto.
 * git push -u origin master
