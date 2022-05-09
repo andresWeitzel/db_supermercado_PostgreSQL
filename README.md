@@ -1,4 +1,4 @@
-# Base de Datos Productos de Supermercado  
+# Base de Datos Gestión de Supermercado  
 
 
 </br>
